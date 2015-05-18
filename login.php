@@ -15,6 +15,7 @@
 			body {
 				font-family:"Segoe UI";
 				color:white;
+				background-color:#000;
 			}
 			
 			table {
