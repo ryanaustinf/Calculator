@@ -356,6 +356,7 @@
 					
 					//set screen
 					$("#screen").text(input);
+					convertToString(input);
 					isInput = true;
 				});
 				
@@ -429,12 +430,18 @@
 									input = input.substring( 0
 												, input.length - 1 );
 								}
+								
+								//if only sign left
+								if( input == '-' ) {
+									input = '0';
+								}
 							} else {
 								//set to zero
 								input = '0';	
 							}
 						};
 						$("#screen").text(input);
+						convertToString(input);
 					}
 				});
 				
