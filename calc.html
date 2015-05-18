@@ -116,26 +116,36 @@
 			* 	num - number to convert
 			*/
 			function convertToString(num) {
-				var string = "";
-				var level = 0;
-				var negative = false;
+				var string = ""; //output
+				var level = 0; //current log base 1000
+				var negative = false; //if negative
 				
+				//if not integral
 				if( num % 1 !== 0 ) {
 					$("#words").hide();
+					
+				//if zero
 				} else if( num == 0 ) {
 					$("#words").show().text("zero").css("width"
 							,$("#screen").css("width") );
+				
+				//if nonzero integer
 				} else {
+					//if negative
 					if( num < 0 ) {
 						negative = true;
 						num *= -1;
 					}
-						
+					
+					//while number is not yet consumed
 					while( num > 0 ) {
+						//get triplet
 						var threeDigits = num % 1000;
-						var temp = "";
+						var temp = ""; //triplet in words
 						
+						//if triplet is not zero
 						if( threeDigits != 0 ) {
+							//convert hundreds digit
 							switch(  Math.floor(threeDigits / 100 ) ) {
 								case 1:
 									temp += "one hundred ";
@@ -167,6 +177,7 @@
 								default:	
 							}
 							
+							//convert tens digit
 							switch( Math.floor(threeDigits % 100 / 10 ) ) {
 								case 2:
 									temp += "twenty-";
@@ -195,6 +206,7 @@
 								default:	
 							}
 	
+							//if triplet mod 100 outside interval [10,19]
 							if( Math.floor(threeDigits % 100 / 10 ) != 1 ) {
 								switch( threeDigits % 10 ) {
 									case 1:
@@ -226,6 +238,8 @@
 										break;
 									default:	
 								}
+								
+							//if within interval [10,19]
 							} else {
 								switch( threeDigits % 10 ) {
 									case 0:
@@ -262,23 +276,34 @@
 								}
 							}
 							
+							//if hanging tens translation
 							if( temp.charAt(temp.length - 1) == '-' ) {
-								temp = temp.substring( 0, temp.length - 1 ) + ' ';
+								temp = temp.substring( 0, temp.length - 1 ) 
+										+ ' ';
 							}
 							
+							//affix suffix
 							temp += suffixes[level];
 							
+							//add to output
 							string = temp + string;
 						}
 						
-						level++;
-						num = Math.floor(num/1000);
+						level++; //increment level
+						num = Math.floor(num/1000); //trim number
 					}
 
+					//if hanging comma
 					if( string.charAt(string.length - 2) == ',' ) {
-						string = string.substring(0,string.length - 2 ); 
+						
+						//trim
+						string = string.substring(0,string.length - 2 );
+						
+					//if hanging end
 					} else if( string.substring( string.length - 4
 								, string.length - 1 ) == 'and' ) {
+						
+						//trim
 						string = string.substring(0, string.length - 6 );
 					}
 					
@@ -286,6 +311,7 @@
 						string = "negative " + string;
 					}
 					
+					//display words
 					$("#words").show().text(string).css("width"
 							,$("#screen").css("width") );
 				}
