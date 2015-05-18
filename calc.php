@@ -1,9 +1,14 @@
-<!-- 
-	calc.html
-	Author:raf
-	@20150518
-	This file provides the view and functionalities of the calculator.
- -->
+<?php  
+	/** 
+	 * calc.php
+	 * Author:raf
+	 * @20150518
+	 * This file provides the view and functionalities of the calculator.
+	 */
+	if( !isset($_SESSION['user'] ) ) {
+		echo "<script>location = '/Calculator';</script>";
+	}
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -105,6 +110,7 @@
 				'quadrillion, ',
 				'quintillion, ',
 				'sextillion, ',
+				'septillion, ',
 				'octillion, ',
 				'nonillion, '
 			];

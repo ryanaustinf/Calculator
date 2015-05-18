@@ -9,7 +9,7 @@
 	$_SESSION['faillogin'] = false;
 	if( $_SERVER['REQUEST_METHOD'] == 'GET' ) {
 		if( isset($_SESSION['user']) ) {
-			require_once "calc.html";
+			require_once "calc.php";
 		} else {
 			require_once "login.php";
 		}
@@ -29,7 +29,7 @@
 			setcookie("avalonuser",$_POST['uname'], time() + 86400 * 14,
 					"/Avalon" );
 						
-			require_once "calc.html";
+			require_once "calc.php";
 		} else {
 			$_SESSION['faillogin'] = true;
 			require_once "login.php";
