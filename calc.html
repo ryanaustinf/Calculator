@@ -67,7 +67,7 @@
 				font-size:1em;
 			}
 			
-			[id^="clear"] {
+			[id="clear"] {
 				width:150px;
 			}
 			
@@ -325,7 +325,19 @@
 				isInput = false;
 				input = null;
 			}
-				
+			
+			/**
+			* negates input in display and local variables
+			*/
+			function negateInput() {
+				if( input.substring(0,1) == '-' ) {
+					input = input.substring(1);
+				} else {
+					input = "-" + input;
+				}
+				$("#screen").text(input);
+			}
+			
 			$(document).ready(function() {
 				$("#words").hide();
 				
@@ -447,6 +459,23 @@
 				});
 				
 				/**
+				* manages sign
+				*/
+				$("#sign").click(function() {
+					if( isInput && input !== null && input != '0' ) {
+						negateInput();
+						convertToString(input);
+					} else if( !isInput && result != null ) {
+						input = String(result);
+						negateInput();
+						convertToString(input);
+						result = input;
+						input = null;
+						oper = '+'; //set dummy operation
+					}
+				});
+				
+				/**
 				* prevents border from appearing on buttons
 				*/
 				$("button").mousedown(function(e) {
@@ -495,7 +524,8 @@
 					<td><button id="divide">/</button></td>
 				</tr>
 				<tr>
-					<td colspan="2"><button id="clearEntry">CE</button></td>
+					<td><button id="sign">+/-</button></td>
+					<td><button id="clearEntry">CE</button></td>
 					<td colspan="2"><button id="clear">C</button></td>
 				</tr>	
 			</table>
