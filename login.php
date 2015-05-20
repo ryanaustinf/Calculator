@@ -12,6 +12,15 @@
 		<meta charset="ISO-8859-1">
 		<title>Calculator Login</title>
 		<style>
+			#mainContent {
+				background-color:#330000;
+				border-radius:30px;
+				position:absolute;
+				left:36%;
+				top:25%;
+				width:400px;
+			}
+			
 			body {
 				font-family:"Segoe UI";
 				color:white;

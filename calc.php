@@ -6,7 +6,8 @@
 	 * This file provides the view and functionalities of the calculator.
 	 */
 	if( !isset($_SESSION['user'] ) ) {
-		echo "<script>location = '/Calculator';</script>";
+		header("Location: /Calculator");
+		die();
 	}
 ?>
 <!DOCTYPE html>
